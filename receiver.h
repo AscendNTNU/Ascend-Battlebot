@@ -1,7 +1,7 @@
 #ifndef RECEIVER_H
 #define RECEIVER_H
 
-#include <EnableInterrupt.h>
+#include "EnableInterrupt/EnableInterrupt.h"
 
 #define RX_N_CHANNELS 2
 #define RX_IN_CH1 11
