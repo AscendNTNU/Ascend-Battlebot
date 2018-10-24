@@ -3,11 +3,9 @@
 
 #include <EnableInterrupt.h>
 
-#define RX_N_CHANNELS 4
+#define RX_N_CHANNELS 2
 #define RX_IN_CH1 11
 #define RX_IN_CH2 10
-#define RX_IN_CH3 10 // copy of ch2
-#define RX_IN_CH4 10 // copy of ch2
 #define RX_IN_MIN 978
 #define RX_IN_MAX 1990
 
@@ -36,10 +34,6 @@ volatile unsigned long pwm_value[RX_N_CHANNELS];
 ADD_CHANNEL(1);
 
 ADD_CHANNEL(2);
-
-ADD_CHANNEL(3);
-
-ADD_CHANNEL(4);
 
 class Receiver {
 public:

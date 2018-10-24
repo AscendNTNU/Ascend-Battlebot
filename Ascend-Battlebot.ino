@@ -13,12 +13,7 @@ void loop() {
   int ch1 = rx.readCh(0);
   int ch2 = rx.readCh(1);
   
-  Serial.print(ch1);
-  Serial.print(", ");
-  Serial.print(ch2);
-  Serial.println(", ");
-
   // apply control
-  //motor.setRight(ch1 - ch2);
-  //motor.setLeft(ch1 + ch2);
+  motor.setRight(ch1 - ch2);
+  motor.setLeft(ch1 + ch2);
 }
