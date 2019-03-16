@@ -8,12 +8,12 @@ pipeline {
     }
     stage('build-docker')  {
       steps {
-        sh 'docker build -t Ascend-Battlebot .'
+        sh 'docker build -t rendell/ascend-battlebot .'
       }
     }
     stage('build') {
       steps {
-        sh 'docker run Ascend-Battlebot make'
+        sh 'docker run rendell/ascend-battlebot make'
       }
     }
   }
