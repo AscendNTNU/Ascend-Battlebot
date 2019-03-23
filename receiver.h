@@ -36,11 +36,11 @@ void ch2Setup() {
     pinMode(RX_IN_CH2, INPUT); digitalWrite(RX_IN_CH2, LOW);
     enableInterrupt(RX_IN_CH2, &ch2Rising, RISING);
 }
-void ch1Rising() {
+void ch2Rising() {
     rise_start[1] = micros();
     enableInterrupt(RX_IN_CH2, &ch2Falling, FALLING);
 }
-void ch1Falling() {
+void ch2Falling() {
     pwm_value[1] = micros() - rise_start[1];
     enableInterrupt(RX_IN_CH2, &ch2Rising, RISING);
 }
