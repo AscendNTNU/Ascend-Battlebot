@@ -13,27 +13,38 @@ volatile unsigned long rise_start[RX_N_CHANNELS];
 volatile unsigned long pwm_value[RX_N_CHANNELS];
 
 
-#define ADD_CHANNEL(CH) \
-  void ch##CH##Setup();\
-  void ch##CH##Rising();\
-  void ch##CH##Falling();\
-  void ch##CH##Setup() {\
-      pinMode(RX_IN_CH##CH, INPUT); digitalWrite(RX_IN_CH##CH, LOW);\
-      enableInterrupt(RX_IN_CH##CH, &ch##CH##Rising, RISING);\
-  }\
-  void ch##CH##Rising() {\
-      rise_start[CH - 1] = micros();\
-      enableInterrupt(RX_IN_CH##CH, &ch##CH##Falling, FALLING);\
-  }\
-  void ch##CH##Falling() {\
-      pwm_value[CH - 1] = micros() - rise_start[CH - 1];\
-      enableInterrupt(RX_IN_CH##CH, &ch##CH##Rising, RISING);\
-  }
+void ch1Setup();
+void ch1Rising();
+void ch1Falling();
+void ch1Setup() {
+    pinMode(RX_IN_CH1, INPUT); digitalWrite(RX_IN_CH1, LOW);
+    enableInterrupt(RX_IN_CH1, &ch1Rising, RISING);
+}
+void ch1Rising() {
+    rise_start[0] = micros();
+    enableInterrupt(RX_IN_CH1, &ch1Falling, FALLING);
+}
+void ch1Falling() {
+    pwm_value[0] = micros() - rise_start[0];
+    enableInterrupt(RX_IN_CH1, &ch1Rising, RISING);
+}
 
+void ch2Setup();
+void ch2Rising();
+void ch2Falling();
+void ch2Setup() {
+    pinMode(RX_IN_CH2, INPUT); digitalWrite(RX_IN_CH2, LOW);
+    enableInterrupt(RX_IN_CH2, &ch2Rising, RISING);
+}
+void ch1Rising() {
+    rise_start[1] = micros();
+    enableInterrupt(RX_IN_CH2, &ch2Falling, FALLING);
+}
+void ch1Falling() {
+    pwm_value[1] = micros() - rise_start[1];
+    enableInterrupt(RX_IN_CH2, &ch2Rising, RISING);
+}
 
-ADD_CHANNEL(1);
-
-ADD_CHANNEL(2);
 
 class Receiver {
 public:
